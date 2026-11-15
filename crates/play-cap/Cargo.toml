@@ -1,0 +1,15 @@
+[package]
+name = "play-cap"
+description = "ce-net capability chains (format ce-cap-v1): issue, encode, decode, verify, decode for display"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+ed25519-dalek.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sha2.workspace = true
+hex.workspace = true
+getrandom.workspace = true

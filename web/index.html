@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#070807">
+<title>ce-net Playground</title>
+<meta name="description" content="Write a cell in your browser, deploy it to the mesh in seconds, call it from TypeScript or Python. Sandboxed, metered, self-expiring.">
+<link rel="stylesheet" href="tokens.css">
+<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="app.css">
+</head>
+<body>
+<header class="top">
+  <span class="brand">ce</span>
+  <div class="headline"><b>Playground</b><span id="hl">deploy a cell from your browser</span></div>
+  <nav class="btns glass"><a class="btn quiet" href="https://github.com/ce-net/demo-playground">Source</a>
+    <button class="btn quiet" id="theme" aria-label="Switch light or dark">Light</button></nav>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="crumb">ce-net / <b>Playground</b> / T0</div>
+    <h1 class="display">Deploy a cell.</h1>
+    <p class="lede">Pick a template, change a line, press Deploy. Your code is built in a sandbox, runs on the mesh with no network, a metered
+      instruction budget and a memory cap, and switches itself off when your grant ends.</p>
+    <div class="stats">
+      <div class="glass ticks stat has-ring"><div><div class="label"><i></i>Calls left</div>
+          <div class="num acc" id="s-left">-</div><div class="sub" id="s-left-sub">no grant yet</div></div>
+        <svg class="ring" viewBox="0 0 36 36" aria-hidden="true"><circle class="bg" cx="18" cy="18" r="15"/>
+          <circle class="fg" id="ring" cx="18" cy="18" r="15" stroke-dasharray="94.25" stroke-dashoffset="94.25"/></svg></div>
+      <div class="glass stat"><div class="label"><i class="g" id="s-dot"></i>Cell</div>
+        <div class="num" id="s-cell">none</div><div class="sub" id="s-cell-sub">not deployed</div></div>
+      <div class="glass stat"><div class="label"><i></i>Expires in</div>
+        <div class="num" id="s-exp">-</div><div class="sub" id="s-exp-sub">grant and cell together</div></div>
+    </div>
+  </section>
+
+  <section class="grid">
+    <div class="glass card" id="c-grant">
+      <div class="label"><i></i>1 · Guest grant</div>
+      <p class="sub-p">A proof-of-work captcha (about a second of your CPU), then a two-link capability chain to a key your browser just made.
+        Its secret never leaves this page.</p>
+      <div class="row">
+        <button class="btn primary" id="b-grant">Get a guest grant</button>
+        <div class="pills" role="group" aria-label="Grant kind">
+          <button aria-pressed="true" data-ttl="600" data-calls="50">10 min · 50 calls</button>
+          <button aria-pressed="false" data-ttl="20" data-calls="50">20 s</button>
+          <button aria-pressed="false" data-ttl="600" data-calls="3">3 calls</button>
+        </div>
+      </div>
+      <div class="status" id="grant-status"></div>
+      <div id="chain"></div>
+    </div>
+
+    <div class="glass card" id="c-code">
+      <div class="label"><i></i>2 · Cell source</div>
+      <div class="chips" role="group" aria-label="Templates" id="templates"></div>
+      <textarea id="src" spellcheck="false" aria-label="Cell source" rows="16"></textarea>
+      <div class="row"><button class="btn primary" id="b-deploy" disabled>Deploy</button>
+        <span class="status" id="deploy-status">get a grant first</span></div>
+    </div>
+
+    <div class="glass card" id="c-art">
+      <div class="label"><i></i>3 · Artifact</div>
+      <dl class="kv" id="art"><dt>Status</dt><dd>nothing built yet</dd></dl>
+      <details><summary>Descriptor</summary><pre id="desc"></pre></details>
+      <details><summary>Rebuild it yourself</summary><pre id="rebuild"></pre></details>
+    </div>
+
+    <div class="glass card" id="c-call">
+      <div class="label"><i class="g"></i>4 · Call it</div>
+      <div class="row" id="ops"><span class="status">deploy a cell to get its ops</span></div>
+      <ol class="log" id="log" aria-live="polite"></ol>
+    </div>
+
+    <div class="glass card wide" id="c-client">
+      <div class="label"><i></i>5 · Same call, three lines</div>
+      <div class="pills" role="group" aria-label="Language" id="langs">
+        <button aria-pressed="true" data-lang="ts">TypeScript</button><button aria-pressed="false" data-lang="py">Python</button></div>
+      <pre id="usage" class="usage">deploy a cell first</pre>
+      <details><summary>Generated module <span id="modname"></span></summary><pre id="module"></pre></details>
+      <details><summary>Your grant string (secret: guest key and chain)</summary><pre id="grantstr"></pre></details>
+    </div>
+  </section>
+
+  <p class="credits">The host can see your code. Results are unverified. Nothing is kept past your grant's expiry except the built artifact
+    and source, stored by hash so anyone can rebuild them. Apache-2.0 · <a href="https://github.com/ce-net/demo-playground">github.com/ce-net/demo-playground</a></p>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

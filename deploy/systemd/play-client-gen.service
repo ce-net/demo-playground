@@ -1,0 +1,12 @@
+[Unit]
+Description=Playground cell client.gen@1
+After=network.target
+
+[Service]
+Environment=PLAY_DATA=%h/.local/share/demo-playground
+ExecStart=%h/.local/share/demo-playground/bin/client-gen serve 127.0.0.1:7864
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

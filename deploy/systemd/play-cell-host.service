@@ -1,0 +1,12 @@
+[Unit]
+Description=Playground cell cell.host
+After=network.target
+
+[Service]
+Environment=PLAY_DATA=%h/.local/share/demo-playground
+ExecStart=%h/.local/share/demo-playground/bin/cell-host serve 127.0.0.1:7863
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

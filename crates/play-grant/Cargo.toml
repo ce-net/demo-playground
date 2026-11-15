@@ -1,0 +1,17 @@
+[package]
+name = "play-grant"
+description = "play.grant@1: a guest capability chain (ce-cap-v1) with a call quota and an expiry, after a proof-of-work captcha"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+play-cap = { path = "../play-cap" }
+play-http = { path = "../play-http" }
+anyhow.workspace = true
+ed25519-dalek.workspace = true
+getrandom.workspace = true
+hex.workspace = true
+serde_json.workspace = true
+sha2.workspace = true

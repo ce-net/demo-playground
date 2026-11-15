@@ -1,0 +1,12 @@
+[package]
+name = "client-gen"
+description = "client.gen@1: a typed TypeScript or Python client for a cell, from its build descriptor"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+play-http = { path = "../play-http" }
+anyhow.workspace = true
+serde_json.workspace = true

@@ -1,0 +1,18 @@
+[package]
+name = "build-wasm"
+description = "build.wasm@1: build a Rust or JavaScript cell into a T0 WebAssembly artifact in a jail, with a descriptor anyone can rebuild from"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+ce-t0 = { path = "../ce-t0" }
+play-cap = { path = "../play-cap" }
+play-http = { path = "../play-http" }
+anyhow.workspace = true
+base64.workspace = true
+getrandom.workspace = true
+hex.workspace = true
+serde_json.workspace = true
+sha2.workspace = true

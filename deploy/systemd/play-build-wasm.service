@@ -1,0 +1,13 @@
+[Unit]
+Description=Playground cell build.wasm@1
+After=network.target
+
+[Service]
+Environment=PLAY_DATA=%h/.local/share/demo-playground
+Environment=PLAY_RUSTC=%h/.cargo/bin/rustc
+ExecStart=%h/.local/share/demo-playground/bin/build-wasm serve 127.0.0.1:7862
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

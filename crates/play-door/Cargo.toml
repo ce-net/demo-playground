@@ -1,0 +1,13 @@
+[package]
+name = "play-door"
+description = "play-door: the public HTTP edge of the playground; serves the page and routes each /api call to the one cell that answers it"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+
+[dependencies]
+play-http = { path = "../play-http" }
+anyhow.workspace = true
+base64.workspace = true
+serde_json.workspace = true

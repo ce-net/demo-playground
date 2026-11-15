@@ -1,0 +1,14 @@
+[Unit]
+Description=Playground door (public HTTP edge)
+After=network.target
+
+[Service]
+Environment=PLAY_DATA=%h/.local/share/demo-playground
+# The URL visitors use; generated clients call it.
+Environment=PLAY_PUBLIC_URL=https://play.ce-net.com
+ExecStart=%h/.local/share/demo-playground/bin/play-door serve 127.0.0.1:7860 %h/.local/share/demo-playground/web
+Restart=on-failure
+RestartSec=2
+
+[Install]
+WantedBy=default.target

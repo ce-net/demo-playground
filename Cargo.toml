@@ -1,0 +1,37 @@
+# One crate per cell; each binary is one replaceable process. Shared code is libraries only.
+[workspace]
+resolver = "2"
+members = [
+    "crates/play-cap",
+    "crates/play-http",
+    "crates/ce-t0",
+    "crates/build-wasm",
+    "crates/client-gen",
+    "crates/play-grant",
+    "crates/cell-host",
+    "crates/play-door",
+]
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+authors = ["Leif Rydenfalk <59741378+Leif-Rydenfalk@users.noreply.github.com>"]
+repository = "https://github.com/ce-net/demo-playground"
+
+[workspace.dependencies]
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+sha2 = "0.10"
+hex = "0.4"
+base64 = "0.22"
+ed25519-dalek = { version = "2", default-features = false, features = ["std", "fast", "zeroize"] }
+getrandom = "0.2"
+tiny_http = "0.12"
+ureq = { version = "2", default-features = false, features = ["json"] }
+wasmtime = { version = "46", default-features = false, features = ["cranelift", "runtime", "anyhow", "parallel-compilation"] }
+wasmtime-wasi = "46"
+
+[profile.release]
+strip = "debuginfo"
